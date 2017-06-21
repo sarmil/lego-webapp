@@ -2,6 +2,7 @@ import React from 'react';
 import { Content, Flex } from 'app/components/Layout';
 import LoginForm from 'app/components/LoginForm';
 import styles from './PublicFrontpage.css';
+import { Link } from 'react-router';
 
 function InfoBox({ children }) {
   return (
@@ -67,6 +68,18 @@ function PublicFrontpage() {
               </a>
               <div className={styles.linkDescription}>
                 Vi bruker stadig mer av livene våre på nett, på jobb som i fritid. Kommunikasjonsteknologi brukes etter hvert av alle og overalt.
+              </div>
+            </li>
+            <li>
+              <Link to="/for-bedrifter">
+                <i className="fa fa-caret-right" /> For bedrifter
+              </Link>
+              <div className={styles.linkDescription}>
+                Her finner du som bedriftsrepresentant informasjon om Abakus
+                {"'"}
+                {}
+                {' '}
+                prosedyrer for bedriftspresentasjoner og andre nyttige fakta.
               </div>
             </li>
           </ul>
