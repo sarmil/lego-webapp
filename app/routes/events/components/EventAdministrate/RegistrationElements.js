@@ -173,7 +173,9 @@ export const UnregisteredElement = ({ registration }) => {
           <Time time={registration.unregistrationDate} format="DD.MM.YYYY" />
         </Tooltip>
       </div>
-      <div className={styles.col}>5. Data</div>
+      <div className={styles.col}>
+        {registration.user.grade ? registration.user.grade.name : ''}
+      </div>
     </li>
   );
 };
