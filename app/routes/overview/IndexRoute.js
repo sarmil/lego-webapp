@@ -1,4 +1,5 @@
 import { compose } from 'redux';
+import loadingIndicator from 'app/utils/loadingIndicator';
 import { connect } from 'react-redux';
 import { dispatched } from '@webkom/react-prepare';
 import { fetch } from 'app/actions/FrontpageActions';
@@ -16,6 +17,7 @@ import {
 const mapStateToProps = state => ({
   frontpage: selectFrontpage(state),
   feed: selectFeedById(state, { feedId: 'personal' }),
+  notLoading: !(state.events.fetching),
   feedItems: selectFeedActivitesByFeedId(state, {
     feedId: 'personal'
   })
@@ -34,5 +36,6 @@ export default compose(
       componentWillReceiveProps: false
     }
   ),
-  connect(mapStateToProps, mapDispatchToProps)
+  connect(mapStateToProps, mapDispatchToProps),
+  loadingIndicator(['notLoading'])
 )(Overview);
