@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import CommentView from 'app/components/Comments/CommentView';
 import Icon from 'app/components/Icon';
 import JoinEventForm from '../JoinEventForm';
-import RegisteredCell from '../RegisteredCell';
 import RegisteredSummary from '../RegisteredSummary';
 import {
   AttendanceStatus,
@@ -27,6 +26,7 @@ import {
   ContentMain,
   ContentSidebar
 } from 'app/components/Content';
+import UserGrid from 'app/components/UserGrid';
 import type { ID } from 'app/models';
 import { Link } from 'react-router';
 
@@ -214,13 +214,11 @@ export default class EventDetail extends Component<Props> {
               {loggedIn && (
                 <Flex column>
                   <h3>Påmeldte</h3>
-                  <Flex className={styles.registeredThumbnails}>
-                    {registrations
-                      .slice(0, 12)
-                      .map(reg => (
-                        <RegisteredCell key={reg.user.id} user={reg.user} />
-                      ))}
-                  </Flex>
+                  <UserGrid
+                    minRows={2}
+                    maxRows={2}
+                    users={registrations.slice(0, 12).map(reg => reg.user)}
+                  />
                   <ModalParentComponent pools={pools} title="Påmeldte">
                     <RegisteredSummary registrations={registrations} />
                     <AttendanceStatus />
