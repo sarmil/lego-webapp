@@ -3,7 +3,7 @@
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import UserProfile from './components/UserProfile';
-import { fetchUser } from 'app/actions/UserActions';
+import { fetchUser, addPenalty } from 'app/actions/UserActions';
 import { fetchUserFeed } from 'app/actions/FeedActions';
 import { selectUserWithGroups } from 'app/reducers/users';
 import loadingIndicator from 'app/utils/loadingIndicator';
@@ -53,7 +53,7 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const mapDispatchToProps = { fetchUser, fetchUserFeed };
+const mapDispatchToProps = { fetchUser, fetchUserFeed, addPenalty };
 
 export default compose(
   replaceUnlessLoggedIn(LoginPage),

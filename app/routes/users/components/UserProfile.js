@@ -26,7 +26,8 @@ type Props = {
   showSettings: boolean,
   feedItems: Array<any>,
   feed: Object,
-  isMe: Boolean
+  isMe: Boolean,
+  addPenalty: string => Promise<*>
 };
 
 export default class UserProfile extends Component<Props> {
@@ -50,7 +51,14 @@ export default class UserProfile extends Component<Props> {
   }
 
   render() {
-    const { user, isMe, showSettings, feedItems, feed } = this.props;
+    const {
+      user,
+      isMe,
+      showSettings,
+      feedItems,
+      feed,
+      addPenalty
+    } = this.props;
     const abakusGroups = groupBy(
       user.abakusGroups,
       group => (group.logo ? 'withLogo' : 'withoutLogo')
@@ -106,7 +114,11 @@ export default class UserProfile extends Component<Props> {
               <div>
                 <h3>Prikker ({this.sumPenalties()} stk)</h3>
                 <Card className={styles.infoCard}>
-                  <Penalties penalties={user.penalties} />
+                  <Penalties
+                    penalties={user.penalties}
+                    addPenalty={addPenalty}
+                    username={user.username}
+                  />
                 </Card>
               </div>
             )}
